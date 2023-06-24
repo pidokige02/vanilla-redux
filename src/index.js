@@ -1,23 +1,17 @@
+import { createStore } from "redux";
+
 const add = document.getElementById("add");
 const minus = document.getElementById("minus");
 const number = document.querySelector("span");
 
-let count = 0;
-number.innerText = count;
+// below is a function
+// count = 0 means if count is undefined, count defaul is 0
+const countModifier = (count = 0) => {
+  return count;
+  // return "Hello" // getState () return "Hello".
+}
 
-const updateText = () => {
-  number.innerText = count;
-};
+// put reducer as param, when cretaStore is called.
+const countStore = createStore(countModifier);
 
-const handleAdd = () => {
-  count = count + 1;
-  updateText();
-};
-
-const handleMinus = () => {
-  count = count - 1;
-  updateText();
-};
-
-add.addEventListener("click", handleAdd);
-minus.addEventListener("click", handleMinus);
+console.log(countStore.getState());
