@@ -40,3 +40,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// connect component 'Home' to the store , do a store dispatch and do a store getstate.
