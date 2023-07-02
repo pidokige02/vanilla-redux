@@ -1,23 +1,23 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators } from "../store";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
-function ToDo({ text, onBtnClick, id }) {
+function ToDo({ text, id }) {
+  const dispatch = useDispatch();
+
+  const onBtnClick = (event) => {
+    dispatch(actionCreators.deleteToDo(id));
+  };
+
   return (
     <li>
       <Link to={`/${id}`}>
-        {text} <button onClick={onBtnClick}>DEL</button>
+        {text}
       </Link>
+      <button onClick={onBtnClick}>DEL</button>
     </li>
   );
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    onBtnClick: () => dispatch(actionCreators.deleteToDo(ownProps.id))
-  };
-}
-
-// ToDo 에서 reducer 에게 message 를 보낸다.
-export default connect(null, mapDispatchToProps)(ToDo);
+export default ToDo;
